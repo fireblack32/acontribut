@@ -1,0 +1,5 @@
+label.requerido:after{
+content: " *";
+color: darkred;
+
+}
