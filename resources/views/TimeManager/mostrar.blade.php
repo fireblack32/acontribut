@@ -14,17 +14,17 @@ Editar Registro
             <div class="card-header">
               <h3 class="card-title">Buscar Time Manager</h3>
               <div class="card-tools">
-                <a href="{{route('TimeManager')}}" class="btn btn-outline-info btn-sm">
+                <a href="{{route('timemanager')}}" class="btn btn-outline-info btn-sm">
                     <i class="fa fa-fw fa-reply-all"></i> Volver al listado
                 </a>
             </div>
             </div>
         </div>
         <div class="card-body">
-        <form action="{{route('mostrar_TimeManager')}}" id="form-general" method="GET" class="form-horizontal" autocomplete="off">
+        <form action="{{route('consultar_timemanager')}}" id="form-general" method="POST" class="form-horizontal" autocomplete="off">
           @csrf 
                 <div class="card-body">
-                  @include("TimeManager.form2")
+                  @include("timemanager.form2")
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">

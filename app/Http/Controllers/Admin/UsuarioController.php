@@ -1,14 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ValidacionUser;
-use App\Models\admin\Rol;
-use App\Models\admin\User;
+use App\Models\Admin\AuditoriaSistema;
+use App\Models\Admin\Rol;
+use App\Models\Admin\User;
 use App\Models\Seguridad\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+
 
 class UsuarioController extends Controller
 {
@@ -48,8 +51,23 @@ class UsuarioController extends Controller
     public function guardar(ValidacionUser $request)
     {
         //
+        //dd($request);
         $usuario=Usuario::create($request->all());
         $usuario->roles()->sync($request->perfil_idperfil);
+        
+        AuditoriaSistema::create([
+            'fecha_hora' => now(),
+            'usuario_id' => Auth::id(),
+            'nombre_usuario' =>  json_encode($usuario->nombre),
+            'accion' => 'CREAR',
+            'modulo_afectado' => 'usuarios',
+            'datos_antes' => null,
+            'datos_despues' => json_encode($cliente),
+            'ip_origen' => request()->ip(),
+            'equipo_origen' => request()->header('User-Agent'),
+            'resultado' => 'EXITO',
+            'observaciones' => 'Cliente creado con ID ' . $cliente->id
+        ]);
         return redirect('admin/user')->with('mensaje', 'Usuario creado con exito');
     }
 
@@ -77,6 +95,19 @@ class UsuarioController extends Controller
         $roles=Rol::pluck('id','nombre');
         $data = Usuario::findOrFail($id);
         //dd($data);
+        AuditoriaSistema::create([
+            'fecha_hora' => now(),
+            'usuario_id' => Auth::id(),
+            'nombre_usuario' =>  json_encode($data->nombre),
+            'accion' => 'EDITAR',
+            'modulo_afectado' => 'Editar usuarios',
+            'datos_antes' => json_encode($data),
+            'datos_despues' => NULL,
+            'ip_origen' => request()->ip(),
+            'equipo_origen' => request()->header('User-Agent'),
+            'resultado' => 'EXITO',
+            'observaciones' => NULL
+        ]);
         return view('admin.user.editar',compact('data','roles') );
 
         
@@ -97,6 +128,19 @@ class UsuarioController extends Controller
         $usuario = Usuario::findOrFail($id);
         $usuario ->update(array_filter($request->all()));
         $usuario->roles()->sync($request->perfil_idperfil);
+         AuditoriaSistema::create([
+            'fecha_hora' => now(),
+            'usuario_id' => Auth::id(),
+            'nombre_usuario' =>  json_encode($usuario->nombre),
+            'accion' => 'ACTUALIZAR',
+            'modulo_afectado' => 'Actualizar usuarios',
+            'datos_antes' => NULL,
+            'datos_despues' => json_encode($usuario),
+            'ip_origen' => request()->ip(),
+            'equipo_origen' => request()->header('User-Agent'),
+            'resultado' => 'EXITO',
+            'observaciones' => NULL
+        ]);
         return redirect('admin/user')->with('mensaje', 'Usuario actualizado con exito');
     }
 

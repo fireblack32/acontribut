@@ -23,10 +23,6 @@
     <div class="col-lg-8">
     <input type="text" name="usuario" id="usuario" class="form-control" value="{{old('usuario', $data->usuario ?? '')}}" required/>
     </div>
-    <label for="password" class="col-lg-3 col-form-label requerido">Password</label>
-    <div class="col-lg-8">
-    <input type="password" name="password" id="password" class="form-control" value="{{old('password', $data->password ?? '')}}" required/>
-    </div>
     <label for="password" class="col-lg-3 col-form-label requerido">Perfil</label>
     <div class="col-lg-8">
         <select id="perfil_idperfil" name="perfil_idperfil" class="form-control" required>

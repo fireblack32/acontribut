@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\admin\Menu;
+use App\Models\Admin\Menu;
 use Facade\FlareClient\View;
 use Illuminate\Support\Facades\View as FacadesView;
 use Illuminate\Support\ServiceProvider;

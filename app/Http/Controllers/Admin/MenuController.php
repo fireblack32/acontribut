@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Validacionmenu;
-use App\Models\admin\Menu;
-use App\Models\admin\SubMenu;
+use App\Models\Admin\Menu;
+use App\Models\Admin\SubMenu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -43,7 +43,7 @@ class MenuController extends Controller
     public function crear()
     {
         //
-        return view('Admin.menu.crear');
+        return view('admin.menu.crear');
     }
 
     /**

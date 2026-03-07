@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\admin\Menu;
-use App\Models\admin\Rol;
+use App\Models\Admin\Menu;
+use App\Models\Admin\Rol;
 use Illuminate\Http\Request;
 
 class MenuPerfilController extends Controller
@@ -21,7 +21,7 @@ class MenuPerfilController extends Controller
         $rols=Rol::orderBy('id')->pluck('nombre','id')->toArray();
         $menus=Menu::getMenu();
         $menusRols=Menu::with('roles')->get()->pluck('roles','id')->toArray();
-        //dd($rols);
+       // dd($rols);
         //dd($menus);
         //dd($menusRols);
 

@@ -16,7 +16,7 @@
             <div class="card-header">
                 <h3 class="card-title">Crear Clientes</h3>
                 <div class="card-tools">
-                    <a href="{{route('usuario')}}" class="btn btn-outline-info btn-sm">
+                    <a href="{{route('cliente')}}" class="btn btn-outline-info btn-sm">
                         <i class="fa fa-fw fa-reply-all"></i> Volver al listado
                     </a>
                 </div>

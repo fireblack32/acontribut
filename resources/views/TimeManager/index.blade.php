@@ -15,12 +15,12 @@ Time Manager
             <div class="card-header">
                 <h3 class="card-title">Registro de Tiempos</h3>
                 <div class="card-tools">
-                    <a href="{{route('crear_TimeManager')}}" class="btn-outline-secondary btn-sm">
+                    <a href="{{route('crear_timemanager')}}" class="btn-outline-secondary btn-sm">
                         <i class="fa fa-fw fa-plus-circle"></i> Crear Nuevo registro
                     </a>
                 </div>
                 <div class="card-tools">
-                    <a href="{{route('mostrar_TimeManager')}}" class="btn-outline-secondary btn-sm">
+                    <a href="{{route('mostrar_timemanager')}}" class="btn-outline-secondary btn-sm">
                         <i class="fa fa-fw fa-plus-circle"></i> Consultar registro en una fecha
                     </a>
                 </div>

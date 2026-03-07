@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Permiso;
-use App\Models\admin\Rol;
+use App\Models\Admin\Rol;
 use Illuminate\Http\Request;
 
 class MenurolController extends Controller

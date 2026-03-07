@@ -16,7 +16,7 @@ class PermisoController extends Controller
      */
     public function index()
     {
-        $datas = permiso::orderBy('id')->get();
+        $datas = \App\Models\Admin\Permiso::orderBy('id')->get();
         return view('admin.permiso.index', compact('datas'));
     }
 
@@ -28,7 +28,7 @@ class PermisoController extends Controller
     public function crear()
     {
         //
-        return view('Admin.permiso.crear');
+        return view('admin.permiso.crear');
         
     }
 

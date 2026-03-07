@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ValidacionActmanager;
-use App\Models\admin\GrupoTimeManager;
-use App\Models\admin\TipoTimeManager;
+use App\Models\Admin\GrupoTimeManager;
+use App\Models\Admin\TipoTimeManager;
 use Illuminate\Http\Request;
 
 class ActtimemanagerController extends Controller

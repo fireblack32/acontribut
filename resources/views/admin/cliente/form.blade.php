@@ -1,3 +1,4 @@
+
 <div class="form-group row">
     <label for="id" class="col-lg-3 col-form-label requerido">NIT</label>
     <div class="col-lg-8">
@@ -36,7 +37,9 @@
         <select id="tipo_sociedad_idtipo_sociedad" name="tipo_sociedad_idtipo_sociedad" class="form-control" required>
             <option></option>    
             @foreach( $sociedad as $key => $value )
-                <option value="{{ $value }}">{{ $key }}</option>
+               
+                <option value="{{ $value }}">{{ $key }}</option>   
+                
             @endforeach
      </select>
     </div>
@@ -55,29 +58,60 @@
     <label for="idusuario_web" class="col-lg-3 col-form-label requerido">Usuario Encargado</label>
     <div class="col-lg-8">
         <select id="idusuario_web" name="idusuario_web" class="form-control" required>
+        @foreach( $idusuario_web as $key => $value )
+           
+            <option value="{{ $value }}">{{ $key }}</option>   
+        
+        @endforeach
+     </select>
+    </div>
+    <label for="id_lider" class="col-lg-3 col-form-label requerido">lider Encargado</label>
+    <div class="col-lg-8">
+        <select id="id_lider" name="id_lider" class="form-control" required>
             <option></option>    
             @foreach( $idusuario_web as $key => $value )
-                <option value="{{ $value }}">{{ $key }}</option>
+            
+                <option value="{{ $value }}">{{ $key }}</option>   
+          
             @endforeach
      </select>
     </div>
-    <label for="idusuario_web" class="col-lg-3 col-form-label requerido">Email auditor</label>
+    <label for="emailauditor" class="col-lg-3 col-form-label requerido">Email auditor</label>
     <div class="col-lg-8">
-        <select id="mail_auditor" name="mail_auditor" class="form-control" required>
+        <select id="emailauditor" name="emailauditor" class="form-control" required>
             <option></option>    
-            @foreach( $mail_auditor as $key => $value )
-                <option value="{{ $value }}">{{ $key }}</option>
-            @endforeach
+            @foreach( $emailauditor as $key => $value )
+            @if ($emailauditor==$value)
+            <option value="{{ $key}}" selected=selected>{{ $value }}</option>
+            @else
+            <option value="{{ $key }}">{{ $value }}</option>   
+            @endif
+        @endforeach
      </select>
     </div>
-    <label for="idusuario_web" class="col-lg-3 col-form-label ">Activo Auditoria</label>
+    <label for="Cauditoria" class="col-lg-3 col-form-label ">Activo Auditoria</label>
     <div class="col-lg-8">
         <select id="Cauditoria" name="Cauditoria" class="form-control" >
             <option value="1">Activo</option>
             <option value="0">No Activo</option>
         </select>
     </div>
-
+    <label for="representante_legal" class="col-lg-3 col-form-label requerido">Representante legal</label>
+    <div class="col-lg-8">
+    <input type="text" name="representante_legal" id="representante_legal" class="form-control" value="{{old('representante_legal', $data->representante_legal ?? '')}}" />
+    </div>
+    <label for="id_representante_legal" class="col-lg-3 col-form-label requerido">Identificación Representante Legal</label>
+    <div class="col-lg-8">
+    <input type="text" name="id_representante_legal" id="id_representante_legal" class="form-control" value="{{old('id_representante_legal', $data->id_representante_legal ?? '')}}" />
+    </div>
+    <label for="idcliente_grupo" class="col-lg-3 col-form-label requerido">Grupo Cliente</label>
+    <div class="col-lg-8">
+    <input type="text" name="idcliente_grupo" id="idcliente_grupo" class="form-control" value="{{old('idcliente_grupo', $data->idcliente_grupo ?? '')}}" />
+    </div>
+    <label for="periodo_balance" class="col-lg-3 col-form-label requerido">Periodo Balance</label>
+    <div class="col-lg-8">
+    <input type="text" name="periodo_balance" id="periodo_balance" class="form-control" value="{{old('periodo_balance', $data->periodo_balance ?? '')}}" />
+    </div>
     
     <div></div>
 

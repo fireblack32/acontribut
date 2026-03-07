@@ -13,7 +13,7 @@ Permiso
         @include('includes.mensajes')
         <div class="card card-info">
             <div class="card-header">
-                <h3 class="card-title">Permsos en el Sistema</h3>
+                <h3 class="card-title">Permisos en el Sistema</h3>
                 <div class="card-tools">
                     <a href="{{route('crear_permiso')}}" class="btn btn-outline-secondary btn-sm">
                         <i class="fa fa-fw fa-plus-circle"></i> Nuevo registro

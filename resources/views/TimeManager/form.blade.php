@@ -1,3 +1,11 @@
+@php
+                                    
+{{
+    $mytime = date('Y-m-d');
+   
+    
+}}
+@endphp
 <head>
     <script language="JavaScript">
 
@@ -135,19 +143,19 @@
     </div>
     <label for="H_Auditoria" class="col-lg-3 col-form-label requerido">H Auditoria: Eje(1.5)</label>
     <div class="col-lg-8">
-    <input type="text" name="H_Auditoria" id="H_Auditoria" class="form-control" value="{{old('H_Auditoria', $data->H_Auditoria ?? '')}}" required/>
+    <input type="text" name="H_Auditoria" id="H_Auditoria" class="form-control" value="{{old('H_Auditoria', $data->H_Auditoria ?? '0')}}" />
     </div>
     <label for="H_Supervision" class="col-lg-3 col-form-label requerido">H Supervisión: Eje(1.5)</label>
     <div class="col-lg-8">
-    <input type="text" name="H_Supervision" id="H_Supervision" class="form-control" value="{{old('H_Supervision', $data->H_Supervision ?? '')}}" required/>
+    <input type="text" name="H_Supervision" id="H_Supervision" class="form-control" value="{{old('H_Supervision', $data->H_Supervision ?? '0')}}" />
     </div>
     <label for="H_Planeacion" class="col-lg-3 col-form-label requerido">H Planeación: Eje(1.5)</label>
     <div class="col-lg-8">
-    <input type="text" name="H_Planeacion" id="H_Planeacion" class="form-control" value="{{old('H_Planeacion', $data->H_Planeacion ?? '')}}" required/>
+    <input type="text" name="H_Planeacion" id="H_Planeacion" class="form-control" value="{{old('H_Planeacion', $data->H_Planeacion ?? '0')}}" />
     </div>
     <label for="H_SGC" class="col-lg-3 col-form-label requerido">	SGC: Eje (1.5)</label>
     <div class="col-lg-8">
-    <input type="text" name="H_SGC" id="H_SGC" class="form-control" value="{{old('H_SGC', $data->H_SGC ?? '')}}" required/>
+    <input type="text" name="H_SGC" id="H_SGC" class="form-control" value="{{old('H_SGC', $data->H_SGC ?? '0')}}" />
     </div>
     <div class="form-group">
         <label class="col-lg-6 col-form-label d-inline requerido">Observaciones:</label>
@@ -161,7 +169,7 @@
     </div>
     <label for="fecha_ven" class="col-lg-3 col-form-label requerido">Fecha de Actividad</label>
     <div class="col-lg-8">
-    <input type="date" name="Fecha_Registro" id="Fecha_Registro" class="form-control" value="{{old('Fecha_Registro', $data->Fecha_Registro ?? '')}}" required/>
+    <input type="date" name="Fecha_Registro" id="Fecha_Registro" class="form-control" value="{{old('Fecha_Registro', $data->Fecha_Registro ?? "$mytime")}}" required/>
     </div>
     <label for="idusuario_web" class="col-lg-3 col-form-label ">Año actividad</label>
     <div class="col-lg-8">

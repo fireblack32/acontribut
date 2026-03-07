@@ -17,7 +17,7 @@ Crear Registro de Tiempo
             <div class="card-header">
               <h3 class="card-title">Crear Registro</h3>
               <div class="card-tools">
-                <a href="{{route('TimeManager')}}" class="btn btn-outline-info btn-sm">
+                <a href="{{route('timemanager')}}" class="btn btn-outline-info btn-sm">
                     <i class="fa fa-fw fa-reply-all"></i> Volver al listado
                 </a>
             </div>
@@ -27,7 +27,7 @@ Crear Registro de Tiempo
         <form  action="{{route('guardar_timemanager')}}" id="form-general" method="POST" class="form-horizontal" autocomplete="off">
           @csrf
                 <div class="card-body" >
-                  @include("TimeManager.form")
+                  @include("timemanager.form")
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ValidacionRol;
-use App\Models\admin\Rol;
+use App\Models\Admin\Rol;
 use Illuminate\Http\Request;
 
 

@@ -3,7 +3,7 @@
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
-use App\Models\admin\Menu;
+use App\Models\Admin\Menu;
 
 class ValidarCampourl implements Rule
 {

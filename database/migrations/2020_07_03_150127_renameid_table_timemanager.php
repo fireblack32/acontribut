@@ -14,7 +14,7 @@ class RenameidTableTimemanager extends Migration
     public function up()
     {
         //
-        Schema::table('timemanager', function ($table) {
+        Schema::table('TimeManager', function ($table) {
             $table->renameColumn('IdTimeManager', 'id');
             });
     }

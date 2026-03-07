@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\ServObligacionesController;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
-use Illuminate\Support\Facades\Route as FacadesRoute;
+//use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +16,14 @@ use Illuminate\Support\Facades\Route as FacadesRoute;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+//
+    Route::post('/mostrar', [ServObligacionesController::class, 'mostrar']);
 
-FacadesRoute::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
+    //Route::post('/mostrar', 'ServObligacionesController@mostrar');
+
+
+
+
+
+

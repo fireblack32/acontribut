@@ -47,7 +47,7 @@ class LoginController extends Controller
     {
        //dd();
         $roles = $user->roles($user)->get();
-        //dd($roles);
+       // dd($roles);
         if ($roles->isNotEmpty()) {
             $user->setSession($roles->toArray());
         } else {

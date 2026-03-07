@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class InicioController extends Controller
 {
@@ -15,6 +16,8 @@ class InicioController extends Controller
     {
         //
         //dd(session()->all());
+        ;
+
         return view('inicio');
         
     }

@@ -25,10 +25,10 @@ class Validaciontimemanager extends FormRequest
     {
         return [
             //
-            'H_Auditoria' =>   'numeric|required:timemanager|max:4',
-            'H_Supervision' => 'numeric|required:timemanager|max:4',
-            'H_Planeacion' =>  'numeric|required:timemanager|max:4',
-            'H_SGC' =>         'numeric|required:timemanager|max:4',
+            'H_Auditoria' =>   'numeric|required:timemanager|max:12',
+            'H_Supervision' => 'numeric|required:timemanager|max:12',
+            'H_Planeacion' =>  'numeric|required:timemanager|max:12',
+	    'H_SGC' =>         'numeric|required:timemanager|max:12',
         ];
     }
 }

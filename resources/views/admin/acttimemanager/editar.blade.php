@@ -21,8 +21,8 @@
                     </a>
                 </div>
             </div>
-            <form action="{{route('actualizar_acttimemanager', ['id' => $data->id])}}" id="form-general" class="form-horizontal form--label-right" method="POST" autocomplete="off">
-                @csrf @method("put")
+            <form action="{{route('actualizar_acttimemanager', ['id' => $data->id])}}" id="form-general" class="form-horizontal form--label-right" method="GET" autocomplete="off">
+                @csrf 
                 <div class="card-body">
                     @include('admin.acttimemanager.form')
                 </div>

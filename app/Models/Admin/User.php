@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\admin;
+namespace App\Models\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,5 +12,5 @@ class User extends Model
      protected $fillable=['documento','nombre','apellidos','telefono','email','usuario','password','perfil_idperfil','fecha_ven','estado'];
      //protected $guarded=['id'];
      public $timestamps = false;
-     protected $hidden = ['password', 'remember_token'];
+     protected $hidden = ['remember_token'];
 }

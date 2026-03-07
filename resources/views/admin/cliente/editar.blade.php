@@ -24,7 +24,7 @@
             <form action="{{route('actualizar_cliente', ['id' => $data->id])}}" id="form-general" class="form-horizontal form--label-right" method="POST" autocomplete="off">
                 @csrf @method("put")
                 <div class="card-body">
-                    @include('admin.cliente.form')
+                    @include('admin.cliente.formedit')
                 </div>
                 <div class="card-footer">
                     <div class="row">
