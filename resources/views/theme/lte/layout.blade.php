@@ -83,5 +83,16 @@
     <script src="{{asset("Assets/js/script.js")}}"></script>
     <script src="{{asset("Assets/js/funciones.js")}}"></script>
    @yield('script')
+   <script>
+   (function () {
+     var debug = @json(session('debug_entrar_portal'));
+     if (debug) {
+       console.log('%c========== DEBUG Entrada a portal (BD) ==========', 'font-size:14px; font-weight:bold');
+       console.log('%cPortal, usuario y roles cargados de la base de datos:', 'font-weight:bold; color:#880088');
+       console.log(debug);
+       console.log('%c==================================================', 'font-size:14px; font-weight:bold');
+     }
+   })();
+   </script>
 </body>
 </html>

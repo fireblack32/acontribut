@@ -91,6 +91,63 @@ return [
             'prefix_indexes' => true,
         ],
 
+        'contabilidad' => [
+            'driver' => 'mysql',
+            'host' => env('DB_CONTABILIDAD_HOST', '127.0.0.1'),
+            'port' => env('DB_CONTABILIDAD_PORT', '3306'),
+            'database' => env('DB_CONTABILIDAD_DATABASE', 'forge'),
+            'username' => env('DB_CONTABILIDAD_USERNAME', 'forge'),
+            'password' => env('DB_CONTABILIDAD_PASSWORD', ''),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+
+        'auditoria' => [
+            'driver' => 'mysql',
+            'host' => env('DB_AUDITORIA_HOST', '127.0.0.1'),
+            'port' => env('DB_AUDITORIA_PORT', '3306'),
+            'database' => env('DB_AUDITORIA_DATABASE', 'forge'),
+            'username' => env('DB_AUDITORIA_USERNAME', 'forge'),
+            'password' => env('DB_AUDITORIA_PASSWORD', ''),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+
+        'legales' => [
+            'driver' => 'mysql',
+            'host' => env('DB_LEGALES_HOST', '127.0.0.1'),
+            'port' => env('DB_LEGALES_PORT', '3306'),
+            'database' => env('DB_LEGALES_DATABASE', 'forge'),
+            'username' => env('DB_LEGALES_USERNAME', 'forge'),
+            'password' => env('DB_LEGALES_PASSWORD', ''),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+
     ],
 
     /*

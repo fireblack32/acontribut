@@ -37,6 +37,13 @@
         </div>
         @endif
 
+      <div class="mb-3">
+        <a href="{{ route('auth.azure.redirect') }}" class="btn btn-secondary btn-block btn-flat">
+          <i class="fab fa-microsoft mr-2"></i> Iniciar sesión con Microsoft
+        </a>
+      </div>
+      <hr class="my-3">
+      <p class="login-box-msg small text-muted">O ingrese con usuario y contraseña</p>
       <form action="{{route('login_post')}}" method="post">
         @csrf
         <div class="input-group mb-3">
@@ -67,7 +74,6 @@
         </div>
       </form>
 
-     
       <!-- /.social-auth-links -->
 
      

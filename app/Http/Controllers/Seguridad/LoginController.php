@@ -62,4 +62,19 @@ class LoginController extends Controller
     {
         return 'usuario';
     }
+
+    /**
+     * Cerrar sesión: limpia también datos de Azure y portal.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
+    {
+        Session::forget(['portales_permitidos', 'portal_actual', 'azure_email', 'azure_name']);
+        $this->guard()->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return $this->loggedOut($request) ?: redirect()->route('login');
+    }
 }

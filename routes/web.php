@@ -24,6 +24,14 @@ Route::get('seguridad/login', 'Seguridad\LoginController@index')->name('login');
 Route::post('seguridad/login', 'Seguridad\LoginController@login')->name('login_post');
 Route::get('seguridad/logout', 'Seguridad\LoginController@logout')->name('logout');
 
+// Azure AD
+Route::get('auth/azure', 'Auth\AzureController@redirect')->name('auth.azure.redirect');
+Route::get('auth/azure/callback', 'Auth\AzureController@callback')->name('auth.azure.callback');
+
+// Hub y entrada a portal (requieren sesión con portales_permitidos)
+Route::get('portal/hub', 'PortalController@hub')->name('portal.hub');
+Route::get('portal/entrar/{portal}', 'PortalController@entrar')->name('portal.entrar')->where('portal', 'contabilidad|auditoria|legales');
+
 Route::get('timemanager', 'TimeManagerController@index')->name('timemanager');
 Route::get('timemanager/crear', 'TimeManagerController@crear')->name('crear_timemanager');
 Route::get('timemanager/mostrar', 'TimeManagerController@mostrar')->name('mostrar_timemanager');
@@ -115,7 +123,7 @@ Route::put('acttimemanager/{id}', 'ActtimemanagerController@actualizar')->name('
 Route::delete('acttimemanager/{id}', 'ActtimemanagerController@eliminar')->name('eliminar_acttimemanager');
 
 
-Route::group(['prefix' => 'admin', 'namespace'=>'Admin', 'middleware'=>['auth','superadmin']], function () {
+Route::group(['prefix' => 'admin', 'namespace'=>'Admin', 'middleware'=>['auth', 'portal.connection', 'superadmin']], function () {
 
     Route::get('', 'AdminController@index');
     Route::get('permiso', 'PermisoController@index')->name('permiso');
