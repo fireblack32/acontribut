@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\PortalResolver;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class AzureController extends Controller
@@ -101,7 +102,20 @@ class AzureController extends Controller
             $responseCode = (int) $m[1];
         }
         if ($responseCode !== 200 || $responseBody === false) {
-            return redirect()->route('login')->withErrors(['error' => 'Error al obtener tokens de Azure. Revisa la configuración (redirect_uri en Azure).']);
+            $azureError = $this->parseAzureTokenError($responseBody);
+            Log::warning('Azure token error', [
+                'http_code' => $responseCode,
+                'redirect_uri_sent' => $redirectUri,
+                'azure_error' => $azureError,
+                'response_body' => $responseBody !== false ? $responseBody : null,
+            ]);
+            $message = 'Error al obtener tokens de Azure. Revisa la configuración (redirect_uri en Azure).';
+            if (config('app.debug') && ! empty($azureError)) {
+                $message .= ' Detalle Azure: ' . $azureError;
+            } else {
+                $message .= ' Revisa storage/logs/laravel.log para el detalle.';
+            }
+            return redirect()->route('login')->withErrors(['error' => $message]);
         }
         $tokens = json_decode($responseBody, true);
         $idToken = $tokens['id_token'] ?? null;
@@ -152,6 +166,28 @@ class AzureController extends Controller
         ]);
 
         return redirect()->route('portal.hub');
+    }
+
+    /**
+     * Extrae mensaje legible del error que devuelve Azure al fallar el canje de tokens.
+     */
+    private function parseAzureTokenError($responseBody): string
+    {
+        if ($responseBody === false || $responseBody === '') {
+            return '';
+        }
+        $data = json_decode($responseBody, true);
+        if (! is_array($data)) {
+            return strlen($responseBody) > 200 ? substr($responseBody, 0, 200) . '…' : $responseBody;
+        }
+        $parts = [];
+        if (! empty($data['error'])) {
+            $parts[] = $data['error'];
+        }
+        if (! empty($data['error_description'])) {
+            $parts[] = $data['error_description'];
+        }
+        return implode(' — ', $parts);
     }
 
     /**

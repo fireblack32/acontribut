@@ -7,6 +7,15 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
+## Autenticación con Microsoft Azure AD
+
+Este proyecto incluye inicio de sesión con Microsoft (Azure AD) y selección de portales (Contabilidad, Auditoría, Legales). Para detalles de la implementación, variables de entorno, configuración en Azure y despliegue, ver:
+
+- **[docs/AUTENTICACION_AZURE.md](docs/AUTENTICACION_AZURE.md)** – Documentación completa de la implementación.
+- **Scripts de despliegue**: `scripts/deploy.sh` (Linux/macOS), `scripts/deploy.ps1` (Windows PowerShell).
+
+---
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
