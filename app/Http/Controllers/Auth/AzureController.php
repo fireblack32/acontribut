@@ -33,7 +33,6 @@ class AzureController extends Controller
 
         $state = Str::random(32);
         session(['azure_state' => $state]);
-        session()->save();
 
         $params = http_build_query([
             'client_id' => $clientId,
