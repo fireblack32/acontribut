@@ -4,7 +4,13 @@
       "Read(//c/Users/TUF GAMING/.ssh/**)",
       "Bash(ping -n 4 192.168.100.3)",
       "Bash(ssh -o ConnectTimeout=10 -o StrictHostKeyChecking=no administracion@192.168.100.3 echo \"conexion exitosa\")",
-      "Bash(powershell -Command \"Test-NetConnection -ComputerName 192.168.100.3 -Port 22 -WarningAction SilentlyContinue | Select-Object TcpTestSucceeded, RemotePort\")"
+      "Bash(powershell -Command \"Test-NetConnection -ComputerName 192.168.100.3 -Port 22 -WarningAction SilentlyContinue | Select-Object TcpTestSucceeded, RemotePort\")",
+      "Bash(php -r \"file_put_contents\\(''d:/Acontribut/acontribut/storage/logs/laravel.log'', \"\"\\\\n[TEST] \"\" . date\\(''Y-m-d H:i:s''\\) . \"\"\\\\n\"\", FILE_APPEND\\); echo ''ok'';\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} %{redirect_url}\" http://127.0.0.1:8000/auth/azure)",
+      "Bash(curl -s -D - -o /dev/null http://127.0.0.1:8000/auth/azure)",
+      "Bash(curl -s -D - -o /dev/null -b azure_state=TEST123 \"http://127.0.0.1:8000/auth/azure/callback?state=TEST123&code=fakecode\")",
+      "Bash(curl -s -D - \"http://127.0.0.1:8000/auth/azure/callback?state=TEST123&code=fakecode\" -b azure_state=TEST123)",
+      "Bash(curl -s -D - -o /dev/null -b azure_state=y6eJyIcQY2Q1Ajk3TNL0NHtB4QD6EtEk http://127.0.0.1:8000/auth/azure/go?state=y6eJyIcQY2Q1Ajk3TNL0NHtB4QD6EtEk)"
     ],
     "additionalDirectories": [
       "c:\\Users\\TUF GAMING\\.ssh"

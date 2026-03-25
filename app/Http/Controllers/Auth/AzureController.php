@@ -19,9 +19,20 @@ class AzureController extends Controller
     }
 
     /**
-     * Redirige al usuario a Azure AD para autorizar.
+     * Paso 1: setea la cookie con el state y redirige al paso 2.
      */
     public function redirect(): RedirectResponse
+    {
+        $state = Str::random(32);
+        $cookie = cookie('azure_state', $state, 10, '/', null, false, true, false, 'lax');
+
+        return redirect()->route('auth.azure.go', ['state' => $state])->withCookie($cookie);
+    }
+
+    /**
+     * Paso 2: el navegador ya tiene la cookie. Ahora redirige a Azure AD.
+     */
+    public function go(Request $request): RedirectResponse
     {
         $tenantId = config('azure.tenant_id');
         $clientId = config('azure.client_id');
@@ -31,7 +42,10 @@ class AzureController extends Controller
             return redirect()->route('login')->withErrors(['error' => 'Configuración de Azure incompleta (AZURE_TENANT_ID, AZURE_CLIENT_ID).']);
         }
 
-        $state = Str::random(32);
+        $state = $request->query('state');
+        if (! $state) {
+            return redirect()->route('login')->withErrors(['error' => 'Estado no proporcionado.']);
+        }
 
         $params = http_build_query([
             'client_id' => $clientId,
@@ -45,9 +59,7 @@ class AzureController extends Controller
 
         $authorizeUrl = sprintf(config('azure.authorize_url'), $tenantId) . '?' . $params;
 
-        $cookie = cookie('azure_state', $state, 10, '/', null, false, true, false, 'lax');
-
-        return redirect()->away($authorizeUrl)->withCookie($cookie);
+        return redirect()->away($authorizeUrl);
     }
 
     /**
@@ -63,6 +75,14 @@ class AzureController extends Controller
 
         $state = $request->query('state');
         $savedState = $request->cookie('azure_state');
+        $rawCookie = $_COOKIE['azure_state'] ?? null;
+
+        Log::info('Azure callback - debug', [
+            'state_query' => $state,
+            'cookie_laravel' => $savedState,
+            'cookie_raw' => $rawCookie,
+            'all_cookies' => array_keys($_COOKIE),
+        ]);
 
         if (! $state || $state !== $savedState) {
             return redirect()->route('login')->withErrors(['error' => 'Estado inválido. Intenta iniciar sesión de nuevo.']);
