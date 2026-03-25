@@ -19,20 +19,9 @@ class AzureController extends Controller
     }
 
     /**
-     * Paso 1: setea la cookie con el state y redirige al paso 2.
+     * Redirige al usuario a Azure AD para autorizar.
      */
     public function redirect(): RedirectResponse
-    {
-        $state = Str::random(32);
-        $cookie = cookie('azure_state', $state, 10, '/', null, false, true, false, 'lax');
-
-        return redirect()->route('auth.azure.go', ['state' => $state])->withCookie($cookie);
-    }
-
-    /**
-     * Paso 2: el navegador ya tiene la cookie. Ahora redirige a Azure AD.
-     */
-    public function go(Request $request): RedirectResponse
     {
         $tenantId = config('azure.tenant_id');
         $clientId = config('azure.client_id');
@@ -42,10 +31,11 @@ class AzureController extends Controller
             return redirect()->route('login')->withErrors(['error' => 'Configuración de Azure incompleta (AZURE_TENANT_ID, AZURE_CLIENT_ID).']);
         }
 
-        $state = $request->query('state');
-        if (! $state) {
-            return redirect()->route('login')->withErrors(['error' => 'Estado no proporcionado.']);
-        }
+        $state = Str::random(32);
+
+        // Guardar state en archivo temporal (no depende de cookies ni sesión)
+        $statePath = storage_path('framework/cache/azure_state_' . hash('sha256', $state));
+        file_put_contents($statePath, $state);
 
         $params = http_build_query([
             'client_id' => $clientId,
@@ -74,19 +64,17 @@ class AzureController extends Controller
         }
 
         $state = $request->query('state');
-        $savedState = $request->cookie('azure_state');
-        $rawCookie = $_COOKIE['azure_state'] ?? null;
 
-        Log::info('Azure callback - debug', [
-            'state_query' => $state,
-            'cookie_laravel' => $savedState,
-            'cookie_raw' => $rawCookie,
-            'all_cookies' => array_keys($_COOKIE),
-        ]);
+        // Verificar state via archivo temporal
+        $statePath = $state ? storage_path('framework/cache/azure_state_' . hash('sha256', $state)) : null;
+        $stateValid = $statePath && file_exists($statePath);
 
-        if (! $state || $state !== $savedState) {
+        if (! $state || ! $stateValid) {
             return redirect()->route('login')->withErrors(['error' => 'Estado inválido. Intenta iniciar sesión de nuevo.']);
         }
+
+        // Limpiar archivo de state usado
+        @unlink($statePath);
 
         $code = $request->query('code');
         if (! $code) {

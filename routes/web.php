@@ -26,7 +26,6 @@ Route::get('seguridad/logout', 'Seguridad\LoginController@logout')->name('logout
 
 // Azure AD
 Route::get('auth/azure', 'Auth\AzureController@redirect')->name('auth.azure.redirect');
-Route::get('auth/azure/go', 'Auth\AzureController@go')->name('auth.azure.go');
 Route::get('auth/azure/callback', 'Auth\AzureController@callback')->name('auth.azure.callback');
 
 // Hub y entrada a portal (requieren sesión con portales_permitidos)
