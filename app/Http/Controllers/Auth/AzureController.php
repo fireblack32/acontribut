@@ -41,6 +41,7 @@ class AzureController extends Controller
             'redirect_uri' => $redirectUri,
             'scope' => config('azure.scopes', 'openid profile email'),
             'state' => $state,
+            'prompt' => 'login',
         ]);
 
         $authorizeUrl = sprintf(config('azure.authorize_url'), $tenantId) . '?' . $params;

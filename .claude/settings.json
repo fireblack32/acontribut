@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/TUF GAMING/.ssh/**)",
+      "Bash(ping -n 4 192.168.100.3)",
+      "Bash(ssh -o ConnectTimeout=10 -o StrictHostKeyChecking=no administracion@192.168.100.3 echo \"conexion exitosa\")",
+      "Bash(powershell -Command \"Test-NetConnection -ComputerName 192.168.100.3 -Port 22 -WarningAction SilentlyContinue | Select-Object TcpTestSucceeded, RemotePort\")"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\TUF GAMING\\.ssh"
+    ]
+  }
+}
