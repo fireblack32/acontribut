@@ -32,7 +32,6 @@ class AzureController extends Controller
         }
 
         $state = Str::random(32);
-        session(['azure_state' => $state]);
 
         $params = http_build_query([
             'client_id' => $clientId,
@@ -46,7 +45,9 @@ class AzureController extends Controller
 
         $authorizeUrl = sprintf(config('azure.authorize_url'), $tenantId) . '?' . $params;
 
-        return redirect()->away($authorizeUrl);
+        $cookie = cookie('azure_state', $state, 10, '/', null, false, true, false, 'lax');
+
+        return redirect()->away($authorizeUrl)->withCookie($cookie);
     }
 
     /**
@@ -61,11 +62,11 @@ class AzureController extends Controller
         }
 
         $state = $request->query('state');
-        $savedState = session('azure_state');
+        $savedState = $request->cookie('azure_state');
+
         if (! $state || $state !== $savedState) {
             return redirect()->route('login')->withErrors(['error' => 'Estado inválido. Intenta iniciar sesión de nuevo.']);
         }
-        session()->forget('azure_state');
 
         $code = $request->query('code');
         if (! $code) {
