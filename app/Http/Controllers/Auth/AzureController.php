@@ -11,7 +11,8 @@ use Illuminate\Support\Str;
 
 class AzureController extends Controller
 {
-    protected PortalResolver $portalResolver;
+    /** @var PortalResolver */
+    protected $portalResolver;
 
     public function __construct(PortalResolver $portalResolver)
     {
