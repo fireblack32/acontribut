@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 
 class PortalResolver
 {
-    protected static $portales = ['contabilidad', 'auditoria', 'legales'];
+    protected static $portales = ['contabilidad', 'auditoria'];
 
     /**
      * Devuelve los nombres de portales en los que el usuario existe y está activo (estado=1).

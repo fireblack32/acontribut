@@ -32,6 +32,9 @@ Route::get('auth/azure/callback', 'Auth\AzureController@callback')->name('auth.a
 Route::get('portal/hub', 'PortalController@hub')->name('portal.hub');
 Route::get('portal/entrar/{portal}', 'PortalController@entrar')->name('portal.entrar')->where('portal', 'contabilidad|auditoria|legales');
 
+// Login por token temporal (recibido desde otro portal)
+Route::get('auth/token-login', 'PortalController@tokenLogin')->name('auth.token-login');
+
 Route::get('timemanager', 'TimeManagerController@index')->name('timemanager');
 Route::get('timemanager/crear', 'TimeManagerController@crear')->name('crear_timemanager');
 Route::get('timemanager/mostrar', 'TimeManagerController@mostrar')->name('mostrar_timemanager');

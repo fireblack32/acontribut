@@ -47,11 +47,7 @@
             <i class="fas fa-clipboard-check mr-2"></i> Auditoría
           </a>
         @endif
-        @if(in_array('legales', $portales_permitidos, true))
-          <a href="{{ route('portal.entrar', ['portal' => 'legales']) }}" class="btn btn-info btn-block btn-flat">
-            <i class="fas fa-balance-scale mr-2"></i> Legales
-          </a>
-        @endif
+        {{-- Portal Legales se habilitará próximamente --}}
       </div>
 
       <p class="mt-3 mb-0 text-center">
