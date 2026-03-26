@@ -70,7 +70,7 @@ class PortalController extends Controller
             'expires_at' => time() + 300,
         ]);
 
-        $tokenPath = '/tmp/portal_token_' . hash('sha256', $token));
+        $tokenPath = '/tmp/portal_token_' . hash('sha256', $token);
         file_put_contents($tokenPath, $tokenData);
 
         $url = rtrim($this->portalUrls[$portal], '/') . '/auth/token-login?token=' . $token;
@@ -88,7 +88,7 @@ class PortalController extends Controller
             return redirect()->route('login')->withErrors(['error' => 'Token no proporcionado.']);
         }
 
-        $tokenPath = '/tmp/portal_token_' . hash('sha256', $token));
+        $tokenPath = '/tmp/portal_token_' . hash('sha256', $token);
         if (! file_exists($tokenPath)) {
             return redirect()->route('login')->withErrors(['error' => 'Token inválido o expirado.']);
         }
