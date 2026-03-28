@@ -55,11 +55,10 @@
         0 8px 22px rgba(198, 40, 40, 0.12),
         inset 0 1px 0 rgba(255, 255, 255, 0.95);
     }
-    /* Mismo criterio que hub: margen superior suave para no recortar el banner con overflow:hidden de la card */
     .portal-auth-card > .portal-logo-in-card {
-      width: 109%;
+      width: 100%;
       text-align: left;
-      margin: -8px -7rem 2.5rem;
+      margin: 0px 0rem 2.5rem;
       line-height: 0;
     }
     .portal-auth-card > .portal-logo-in-card img {
@@ -80,7 +79,7 @@
     @media (max-width: 576px) {
       .portal-auth-card > .portal-logo-in-card {
         width: 100%;
-        margin: -1rem -1.25rem 1.75rem;
+        margin: 0px 0rem 2.5rem;
       }
     }
     .portal-auth-msg {
