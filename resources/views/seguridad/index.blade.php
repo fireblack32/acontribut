@@ -148,11 +148,39 @@
         </div>
         @endif
 
-      <div class="mb-0">
+      <div class="mb-3">
         <a href="{{ route('auth.azure.redirect') }}" class="btn btn-portal-microsoft btn-block btn-flat">
           <i class="fab fa-microsoft"></i> Iniciar sesión con Microsoft
         </a>
       </div>
+
+      <hr style="border-color: #ddd; margin: 1.5rem 0;">
+      <p class="login-box-msg portal-auth-msg" style="font-size: 0.9rem; margin-bottom: 1rem !important;">O ingrese con usuario y contraseña</p>
+
+      <form action="{{route('login_post')}}" method="post">
+        @csrf
+        <div class="input-group mb-3">
+          <input type="text" name="usuario" class="form-control" placeholder="Usuario" value="{{old('usuario')}}" style="border-radius: 10px 0 0 10px;">
+          <div class="input-group-append">
+            <div class="input-group-text" style="border-radius: 0 10px 10px 0;">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" name="password" class="form-control" placeholder="Contraseña" style="border-radius: 10px 0 0 10px;">
+          <div class="input-group-append">
+            <div class="input-group-text" style="border-radius: 0 10px 10px 0;">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <button type="submit" class="btn btn-portal-microsoft btn-block" style="background: linear-gradient(135deg, var(--portal-red) 0%, #d32f2f 100%); box-shadow: 0 4px 14px rgba(198, 40, 40, 0.35);">Iniciar sesión</button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </div>
