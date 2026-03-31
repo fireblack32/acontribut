@@ -18,6 +18,7 @@ class PortalController extends Controller
     public function __construct()
     {
         $this->portalUrls = [
+            'contabilidad' => config('portales.urls.contabilidad', 'https://gestioncontabilidad.optimalsolutions.com.co/public'),
             'auditoria' => config('portales.urls.auditoria', 'https://gestionauditoria.acontributsa.com/public'),
             'legales' => config('portales.urls.legales', 'https://gestionlegales.optimalsolutions.com.co/public'),
         ];
