@@ -1,0 +1,204 @@
+@php
+$ruta_final="informe_excel(".date('Y-m-d_H:i:s').").xls";
+$excelfile=$ruta_final;
+@header('Content-type: application/octet-stream'); 
+@header('Content-disposition: attachment; filename='.$excelfile);
+
+                            {{
+                            $estadoobl='';
+                            $resultadosel='';
+                            $querysel='';
+                            $queryd2='';
+                            $queryd3='';
+                            $queryd4='';
+                            $idcliente='';
+                            function fun_eliminarDobleEspacios($cadena)
+                                {
+                                        $limpia    = "";
+                                        $parts    = array();
+                                        
+                                        // divido la cadena con todos los espacios q haya
+                                        $parts = explode(" ",$cadena);
+                                        
+                                        foreach($parts as $subcadena)
+                                        {
+                                            // de cada subcadena elimino sus espacios a los lados
+                                            $subcadena = trim($subcadena);
+                                            
+                                            // luego lo vuelvo a unir con un espacio para formar la nueva cadena limpia
+                                            // omitir los que sean unicamente espacios en blanco
+                                            if($subcadena!="")
+                                            { $limpia .= $subcadena." "; }
+                                        }
+                                        $limpia = trim($limpia);
+                                        
+                                        return $limpia;
+                                } 
+                                
+                            $usuario_id=session()->get('usuario_id');
+                            if ($usuario_id!=''){
+
+                                if ($estadoobl1!=""){
+                                $estadoobl=$estadoobl." ".$estadoobl1;
+                                }
+                                
+                                
+                                if($estadoobl2!=""){
+                                $estadoobl=$estadoobl." ".$estadoobl2;
+                                            }
+                                
+                                if($estadoobl3!=""){
+                                $estadoobl=$estadoobl." ".$estadoobl3;
+                                
+                                }
+                                
+                                if($estadoobl4!=""){
+                                $estadoobl=$estadoobl." ".$estadoobl4;
+                                }
+                                
+                                if($estadoobl5!=""){
+                                $estadoobl=$estadoobl." ".$estadoobl5;
+                                }
+                                
+                                if($estadoobl6!=""){
+                                $estadoobl=$estadoobl." ".$estadoobl6;
+                                }
+                                
+                                if($estadoobl7!=""){
+                                $estadoobl=$estadoobl." ".$estadoobl7;
+                                }
+                               
+                                
+                                //echo "Antes del trim: ".$estadoobl;
+                                $estadoobl=trim($estadoobl);
+                                
+                                //echo "Despues del trim:".$estadoobl;
+                                
+                                $estadoobl=explode(" ",$estadoobl);
+                                
+                                $estadooblf=implode(' or estado= ',$estadoobl);
+				$estadooblf=$estadooblf.' or estado=""';
+                                if($cliente!=""){
+
+                                $query='SELECT `id`,`nombre`,`tel_fijo`,`tel_movil`,`email`,`persona_contacto`  , (if(`estado`="1","Activo","Inactivo")) AS Estado FROM `cliente` WHERE  `id` like "%'.$cliente.'%" and `estado` like "%'.$activo.'%"';
+                                //$query='SELECT idobligaciones, nombre, tabla_obligacion FROM obligaciones ORDER BY nombre';
+                                $database =Config::get('database.connections.'.Config::get('database.default'));
+                                $database_name=$database['database'];
+                                $database_host = $database['host'];
+                                $database_password =  $database['password'];
+                                $database_user =  $database['username'];
+                                $conn = mysqli_connect($database_host,$database_user,$database_password,$database_name);
+                                $resultobl=mysqli_query($conn,$query);                        
+                                while ($row = mysqli_fetch_array($resultobl)){
+                                        $idcliente=$row["id"];
+                                        $nombre=$row["nombre"];
+                                        //echo $idcliente." ".$nombre;
+
+                                    }
+                                }
+                                    if($obligacion=="") {
+                                        
+                                        $queryb="SELECT `idobligaciones`,`nombre`,`tabla_obligacion` FROM `obligaciones` ";
+                                    }else{
+                                    
+                                        $queryb="SELECT `idobligaciones`,`nombre`,`tabla_obligacion` FROM `obligaciones` where `idobligaciones` = '$obligacion' ";
+                                            //echo $queryb;  
+                                    }
+
+                                        $database =Config::get('database.connections.'.Config::get('database.default'));
+                                        $database_name=$database['database'];
+                                        $database_host = $database['host'];
+                                        $database_password =  $database['password'];
+                                        $database_user =  $database['username'];
+                                        $conn = mysqli_connect($database_host,$database_user,$database_password,$database_name);
+                                        $resultooblig=mysqli_query($conn,$queryb);
+                            
+                                        while($row=mysqli_fetch_array($resultooblig)){
+                                        
+                                        $idobligaciones=$row["idobligaciones"];
+                                        $table=$row["tabla_obligacion"];
+                                        $nombre=$row["nombre"];
+                                        $queryd1="`cliente_idcliente` like '%$idcliente%'";
+
+                                        if($Fechaini!=""){
+                                        
+                                        $queryd2=" "."`fecha`>='$Fechaini'";
+                                        
+                                        }
+                                        //echo $theDate1;
+                                        if($Fechafin!=""){
+                                        $queryd3=" "."`fecha`<='$Fechafin'";
+                                                    
+                                        }
+
+                                        if($usuario!=""){
+                                        $queryd4=" "."`idusuario_web`='$usuario'";
+                                        
+                                        }
+                                        
+                                        $variable=''.$queryd2." ".$queryd3." ".$queryd4;
+                                        //$variable=str_replace(",", ",,", $variable);
+                
+                                        $miarreglo1=fun_eliminarDobleEspacios($variable);
+                                        $miarreglo1=explode(" ",$miarreglo1);
+                                        $miarreglo1=implode(" and ",$miarreglo1);
+
+                                        if($estadooblf!=""){
+                                        $miarreglo1=$miarreglo1." and (estado=".$estadooblf.")";
+                                        }
+                                        
+                                
+                                        if($miarreglo1==""){
+                                            $querybase=$miarreglo1=$queryd1;
+                                        }else{   			
+                                            $querybase=$queryd1." and ".$miarreglo1;
+                                        }
+                                       
+                    
+                                        $querypre='SELECT `Descripcion` FROM `presentacion_obligaciones2` WHERE `id_obligacion`='.$idobligaciones.' LIMIT 0 , 1';
+                                        //$querypre='SELECT `idobligaciones`,`nombre`,`tabla_obligacion` FROM `obligaciones` where `idobligaciones` = '.$obligacion.' ';
+
+                                        $database =Config::get('database.connections.'.Config::get('database.default'));
+                                        $database_name=$database['database'];
+                                        $database_host = $database['host'];
+                                        $database_password =  $database['password'];
+                                        $database_user =  $database['username'];
+                                        $conn = mysqli_connect($database_host,$database_user,$database_password,$database_name);
+                                        $resultopres=mysqli_query($conn,$querypre);
+                                        
+                                        while($row=mysqli_fetch_array($resultopres)){
+                                        
+                                                $querysel=$row["Descripcion"];
+                                                //$querysel="SELECT $cliente as NIT , (SELECT `nombre` FROM `cliente` WHERE `idcliente`=NIT)as `Nombre` , `fecha`,(SELECT `descripcion` FROM `estado_obligaciones` WHERE `idestado_obligaciones`=`Estado`)as Estado_Actual,(SELECT u.`usuario` FROM `usuario_web` u WHERE u.`idusuario_web`=`$table`.`idusuario_web`)as Encargado FROM";
+
+                                                if($querysel=='' ){
+                                                    
+                
+                                                    $querysel="SELECT `id`, `cliente_idcliente` as NIT , (SELECT `nombre` FROM `cliente` WHERE `id`=NIT)as `Nombre` , `fecha`,(SELECT `descripcion` FROM `estado_obligaciones` WHERE `idestado_obligaciones`=`Estado`)as Estado_Actual,(SELECT u.`usuario` FROM `usuario_web` u WHERE u.`idusuario_web`=`$table`.`idusuario_web`)as Encargado FROM";
+                                                }
+                                                
+                                            }
+                                        
+                                      
+                                        if($querybase==""){
+                                        $queryp=$querysel." `".$table."`";
+                                        }
+                                        
+                                        if($querybase!=null){
+                                        $queryp=$querysel." `".$table."` WHERE ".$querybase;
+                                        }
+                                    
+                                            echo '<tr>';
+                                            //echo '<div><h2 class=card-title text-center><p><b>'.$queryp.'</b></p></h2></div>';
+                                            echo Funciontabla::maketablesingle2($queryp,$nombre);
+                                            echo '<tr>';
+                                            $querysel="SELECT `id`,`cliente_idcliente` as NIT , (SELECT `nombre` FROM `cliente` WHERE `id`=NIT)as `Nombre` , `fecha`,(SELECT `descripcion` FROM `estado_obligaciones` WHERE `idestado_obligaciones`=`Estado`)as Estado_Actual,(SELECT u.`usuario` FROM `usuario_web` u WHERE u.`id`=`idusuario_web`)as Encargado FROM";
+
+
+                                    }
+                                    
+                                }
+                              
+                            }
+                        }
+@endphp
