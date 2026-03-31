@@ -26,7 +26,7 @@ Mis Pendientes
                     <tbody>
                 @auth
                 <div class="mb-4">
-                 <a href="https://app.powerbi.com/view?r=eyJrIjoiMmM3YWVhNjQtMGRiOC00NWYyLWE3OTQtYTMwZDc4ZWM1N2NlIiwidCI6IjhhNGE4MjY5LTU5M2MtNDhiMy1iYmUyLTY0ZGQ1Yzg3MThmNSIsImMiOjR9" target="_blank">
+                 <a href="{{ config('portales.powerbi', '#') }}" target="_blank">
                    <img src="{{ asset('assets/images/informepng.png') }}" alt="Ver Informe" style="max-width: 150px;">
                  </a>
                 </div>

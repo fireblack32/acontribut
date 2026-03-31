@@ -28,7 +28,7 @@
           </ul>
         </div>
         <div class="mt-1 px-3">
-          <a href="https://gestion.acontributsa.com/public/seguridad/login" class="btn btn-outline-light btn-sm btn-block">
+          <a href="https://gestion.acontributsa.com/public/auth/azure" class="btn btn-outline-light btn-sm btn-block">
             <i class="fas fa-exchange-alt mr-1"></i> Cambiar portal
           </a>
         </div>
