@@ -22,7 +22,7 @@ class AzureController extends Controller
     /**
      * Redirige al usuario a Azure AD para autorizar.
      */
-    public function redirect(): RedirectResponse
+    public function redirect(Request $request): RedirectResponse
     {
         $tenantId = config('azure.tenant_id');
         $clientId = config('azure.client_id');
@@ -38,17 +38,21 @@ class AzureController extends Controller
         $statePath = storage_path('framework/cache/azure_state_' . hash('sha256', $state));
         file_put_contents($statePath, $state);
 
-        $params = http_build_query([
+        $params = [
             'client_id' => $clientId,
             'response_type' => 'code',
             'response_mode' => 'query',
             'redirect_uri' => $redirectUri,
             'scope' => config('azure.scopes', 'openid profile email'),
             'state' => $state,
-            'prompt' => 'login',
-        ]);
+        ];
 
-        $authorizeUrl = sprintf(config('azure.authorize_url'), $tenantId) . '?' . $params;
+        // Si no viene noprompt, forzar login en Azure
+        if (! $request->query('noprompt')) {
+            $params['prompt'] = 'login';
+        }
+
+        $authorizeUrl = sprintf(config('azure.authorize_url'), $tenantId) . '?' . http_build_query($params);
 
         return redirect()->away($authorizeUrl);
     }
