@@ -13,9 +13,15 @@ class PortalController extends Controller
     /**
      * URLs externas de cada portal. Si un portal no está aquí, se maneja localmente.
      */
-    protected $portalUrls = [
-        'auditoria' => 'https://gestionpruebasoptimal.optimalsolutions.com.co/public',
-    ];
+    protected $portalUrls = [];
+
+    public function __construct()
+    {
+        $this->portalUrls = [
+            'auditoria' => config('portales.urls.auditoria', 'https://gestionauditoria.acontributsa.com/public'),
+            'legales' => config('portales.urls.legales', 'https://gestionlegales.optimalsolutions.com.co/public'),
+        ];
+    }
 
     /**
      * Muestra el hub de selección de portal (solo si hay portales_permitidos en sesión).

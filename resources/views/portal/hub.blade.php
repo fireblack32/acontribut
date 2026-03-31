@@ -176,7 +176,11 @@
             <i class="fas fa-clipboard-check mr-2"></i> Auditoría
           </a>
         @endif
-        {{-- Portal Legales se habilitará próximamente --}}
+        @if(in_array('legales', $portales_permitidos, true))
+          <a href="{{ route('portal.entrar', ['portal' => 'legales']) }}" class="btn btn-portal-blue btn-block btn-flat" style="background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 55%, #43a047 100%); box-shadow: 0 4px 12px rgba(27, 94, 32, 0.35);">
+            <i class="fas fa-balance-scale mr-2"></i> Legales
+          </a>
+        @endif
       </div>
 
       <p class="mt-3 mb-0 text-center">
