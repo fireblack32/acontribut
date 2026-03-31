@@ -23,9 +23,14 @@
         <div>
           <ul>
           <a href="{{route('login')}}" class="nav-link">
-                  <i class="nav-icon far fa-circle text-info"></i> INICIO               
+                  <i class="nav-icon far fa-circle text-info"></i> INICIO
                 </a>
           </ul>
+        </div>
+        <div class="mt-1 px-3">
+          <a href="https://gestion.acontributsa.com/public/seguridad/login" class="btn btn-outline-light btn-sm btn-block">
+            <i class="fas fa-exchange-alt mr-1"></i> Cambiar portal
+          </a>
         </div>
       <!-- Sidebar Menu -->
       <div class="sidebar">
