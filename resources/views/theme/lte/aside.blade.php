@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{asset("Assets/$theme/index3.html")}}" class="brand-link">
+    <a href="{{ url('/admin') }}" class="brand-link">
       <img src="{{asset("Assets/$theme/dist/img/AdminLTELogo.png")}}"
            alt="AdminLTE Logo"
            class="brand-image img-circle elevation-3"
