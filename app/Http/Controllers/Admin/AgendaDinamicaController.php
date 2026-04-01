@@ -63,12 +63,12 @@ class AgendaDinamicaController extends Controller
                             $idObligacion=$row["idObligacion"];
                             $declararen=$row["caracteristicas"];
                             $campo= explode('-',$declararen);
-                            $rinicio=$campo[0];
-                            $rfin=$campo[1];
-                            $tipodeclaracion=$campo[2];
+                            $rinicio=isset($campo[0]) ? $campo[0] : '';
+                            $rfin=isset($campo[1]) ? $campo[1] : '';
+                            $tipodeclaracion=isset($campo[2]) ? $campo[2] : '';
                             $diash=$row["Dias_H_Encargado"];
                             $diasp=$row["Dias_H_Cliente"];
-                         
+
                        
                             }
                     $query="SELECT `cliente_idcliente`, `idusuario_web_encargado` FROM `cliente_has_obligaciones` WHERE `obligaciones_idobligaciones`=".$idObligacion."";
@@ -122,12 +122,12 @@ class AgendaDinamicaController extends Controller
                        $idObligacion=$row["idObligacion"];
                        $declararen=$row["caracteristicas"];
                        $campo= explode('-',$declararen);
-                       $tipodeclaracion=$campo[2];
-                       $rinicio=$campo[0];
-                       $rfin=$campo[1];
+                       $tipodeclaracion=isset($campo[2]) ? $campo[2] : '';
+                       $rinicio=isset($campo[0]) ? $campo[0] : '';
+                       $rfin=isset($campo[1]) ? $campo[1] : '';
                        $diash=$row["Dias_H_Encargado"];
                        $diasp=$row["Dias_H_Cliente"];
-                    
+
                   
                        }
                        $query="SELECT `cliente_idcliente`, `idusuario_web_encargado` FROM `cliente_has_obligaciones` WHERE `obligaciones_idobligaciones`=".$idObligacion."";
@@ -183,9 +183,9 @@ class AgendaDinamicaController extends Controller
                        $idObligacion=$row["idObligacion"];
                        $declararen=$row["caracteristicas"];
                        $campo= explode('-',$declararen);
-                       $rinicio=$campo[0];
-                       $rfin=$campo[1];
-                       $tipodeclaracion=$campo[2];
+                       $rinicio=isset($campo[0]) ? $campo[0] : '';
+                       $rfin=isset($campo[1]) ? $campo[1] : '';
+                       $tipodeclaracion=isset($campo[2]) ? $campo[2] : '';
                        $diash=$row["Dias_H_Encargado"];
                        $diasp=$row["Dias_H_Cliente"];
                        }
@@ -241,10 +241,10 @@ class AgendaDinamicaController extends Controller
                        $idObligacion=$row["idObligacion"];
                        $declararen=$row["caracteristicas"];
                        $campo= explode('-',$declararen);
-                       $rinicio=$campo[0];
-                       $rfin=$campo[1];
-                       $tipodeclaracion=$campo[2];
-                       $valor=$campo[3];
+                       $rinicio=isset($campo[0]) ? $campo[0] : '';
+                       $rfin=isset($campo[1]) ? $campo[1] : '';
+                       $tipodeclaracion=isset($campo[2]) ? $campo[2] : '';
+                       $valor=isset($campo[3]) ? $campo[3] : '';
                        $diash=$row["Dias_H_Encargado"];
                        $diasp=$row["Dias_H_Cliente"];
                        }
@@ -299,9 +299,9 @@ class AgendaDinamicaController extends Controller
                        $idObligacion=$row["idObligacion"];
                        $declararen=$row["caracteristicas"];
                        $campo= explode('-',$declararen);
-                       $rinicio=$campo[0];
-                       $rfin=$campo[1];
-                       $tipodeclaracion=$campo[2];
+                       $rinicio=isset($campo[0]) ? $campo[0] : '';
+                       $rfin=isset($campo[1]) ? $campo[1] : '';
+                       $tipodeclaracion=isset($campo[2]) ? $campo[2] : '';
                        $diash=$row["Dias_H_Encargado"];
                        $diasp=$row["Dias_H_Cliente"];
                        }
@@ -356,9 +356,9 @@ class AgendaDinamicaController extends Controller
                        $idObligacion=$row["idObligacion"];
                        $declararen=$row["caracteristicas"];
                        $campo= explode('-',$declararen);
-                       $rinicio=$campo[0];
-                       $rfin=$campo[1];
-                       $tipodeclaracion=$campo[2];
+                       $rinicio=isset($campo[0]) ? $campo[0] : '';
+                       $rfin=isset($campo[1]) ? $campo[1] : '';
+                       $tipodeclaracion=isset($campo[2]) ? $campo[2] : '';
                        $diash=$row["Dias_H_Encargado"];
                        $diasp=$row["Dias_H_Cliente"];
                        }
@@ -411,13 +411,9 @@ class AgendaDinamicaController extends Controller
                         $idObligacion=$row["idObligacion"];
                         $declararen=$row["caracteristicas"];
                         $campo= explode('-',$declararen);
-                        $rinicio=$campo[0];
-                        $rfin=$campo[1];
-                        if(empty($campo[2])) {
-                       
-                            $campo[2]='0';
-                        }
-                        $tipodeclaracion=$campo[2];
+                        $rinicio=isset($campo[0]) ? $campo[0] : '';
+                        $rfin=isset($campo[1]) ? $campo[1] : '';
+                        $tipodeclaracion=isset($campo[2]) && !empty($campo[2]) ? $campo[2] : '0';
                         $diash=$row["Dias_H_Encargado"];
                         $diasp=$row["Dias_H_Cliente"];
                     
@@ -471,10 +467,10 @@ class AgendaDinamicaController extends Controller
                         $idObligacion=$row["idObligacion"];
                         $declararen=$row["caracteristicas"];
                         $campo= explode('-',$declararen);
-                        $rinicio=$campo[0];
-                        $rfin=$campo[1];
-                        $municipio=$campo[2];
-                        $tipodeclaracion=$campo[2];
+                        $rinicio=isset($campo[0]) ? $campo[0] : '';
+                        $rfin=isset($campo[1]) ? $campo[1] : '';
+                        $municipio=isset($campo[2]) ? $campo[2] : '';
+                        $tipodeclaracion=isset($campo[2]) ? $campo[2] : '';
                         $diash=$row["Dias_H_Encargado"];
                         $diasp=$row["Dias_H_Cliente"];
                     
@@ -543,13 +539,9 @@ class AgendaDinamicaController extends Controller
                         $idObligacion=$row["idObligacion"];
                         $declararen=$row["caracteristicas"];
                         $campo= explode('-',$declararen);
-                        $rinicio=$campo[0];
-                        $rfin=$campo[1];
-                        if(empty($campo[2])) {
-                       
-                            $campo[2]='0';
-                        }
-                        $tipodeclaracion=$campo[2];
+                        $rinicio=isset($campo[0]) ? $campo[0] : '';
+                        $rfin=isset($campo[1]) ? $campo[1] : '';
+                        $tipodeclaracion=isset($campo[2]) && !empty($campo[2]) ? $campo[2] : '0';
                         $diash=$row["Dias_H_Encargado"];
                         $diasp=$row["Dias_H_Cliente"];
                     
@@ -602,13 +594,9 @@ class AgendaDinamicaController extends Controller
                         $idObligacion=$row["idObligacion"];
                         $declararen=$row["caracteristicas"];
                         $campo= explode('-',$declararen);
-                        $rinicio=$campo[0];
-                        $rfin=$campo[1];
-                        if(empty($campo[2])) {
-                       
-                            $campo[2]='0';
-                        }
-                        $tipodeclaracion=$campo[2];
+                        $rinicio=isset($campo[0]) ? $campo[0] : '';
+                        $rfin=isset($campo[1]) ? $campo[1] : '';
+                        $tipodeclaracion=isset($campo[2]) && !empty($campo[2]) ? $campo[2] : '0';
                         $diash=$row["Dias_H_Encargado"];
                         $diasp=$row["Dias_H_Cliente"];
                     
